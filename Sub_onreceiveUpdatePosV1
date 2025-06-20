@@ -1,17 +1,18 @@
 Sub_onReceivePosUpdateXYZ(PosX, PosY, PosZ)
-     IF CheckPosUpdateXYZ(PosX,PosY,PosZ) = "31974,32011,7"
-          GoToSUB.Sub_Start()
-     #Aurea  ship to port
-     ElseIF CheckMapGPSdataUse() C= ("AureaShipToTeleport")
-          IF CheckPosUpdateXYZ(PosX,PosY,PosZ) = "31991,32013,7"
-               IF CheckSQL("NextQuest") = "Start Quest"
-                    ScriptGO.SetSQL("NextQuest") = "Orthoma"
-                    IF CheckSQL("NextQuest") = "Orthoma"
-                         IF CheckMapGPSdataUse() = ("AureaShipToTeleport GPS.txt")
-                              IF CheckSQL("Orthoma") = True
-                                   ConsolePrint("Teleport To Orthoma")
-                                   ScriptGO.EnterTeleportTo('Orthoma')
-               ElseIF CheckSQL("NextQuest") ="NextGorgoros"
+  IF CheckPosUpdateXYZ(PosX,PosY,PosZ) = "31974,32011,7"
+   GoToSUB.Sub_Start()
+ #Aurea  ship to port
+ ElseIF CheckMapGPSdataUse() C=("AureaShipToTeleport")
+   IF CheckPosUpdateXYZ(PosX,PosY,PosZ) = "31991,32013,7"
+    IF CheckSQL("NextQuest") = "Start Quest"
+       ScriptGO.SetSQL("NextQuest") = "Orthoma"
+       IF CheckSQL("NextQuest") = "Orthoma"
+         IF CheckMapGPSdataUse() = ("AureaShipToTeleport GPS.txt")
+           IF CheckSQL("Orthoma") = True
+             ConsolePrint("Teleport To Orthoma")
+               ScriptGO.EnterTeleportTo('Orthoma')
+           
+ElseIF CheckSQL("NextQuest") ="NextGorgoros"
                     ScriptGO.SetSQL("NextQuest") = "Gorgoros"
                     IF CheckSQL("NextQuest") = "Gorgoros"
                          IF CheckSQL("Gorgoros") = True
