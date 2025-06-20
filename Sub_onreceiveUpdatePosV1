@@ -1,0 +1,156 @@
+Sub_onReceivePosUpdateXYZ(PosX, PosY, PosZ)
+     IF CheckPosUpdateXYZ(PosX,PosY,PosZ) = "31974,32011,7"
+          GoToSUB.Sub_Start()
+     #Aurea  ship to port
+     ElseIF CheckMapGPSdataUse() C= ("AureaShipToTeleport")
+          IF CheckPosUpdateXYZ(PosX,PosY,PosZ) = "31991,32013,7"
+               IF CheckSQL("NextQuest") = "Start Quest"
+                    ScriptGO.SetSQL("NextQuest") = "Orthoma"
+                    IF CheckSQL("NextQuest") = "Orthoma"
+                         IF CheckMapGPSdataUse() = ("AureaShipToTeleport GPS.txt")
+                              IF CheckSQL("Orthoma") = True
+                                   ConsolePrint("Teleport To Orthoma")
+                                   ScriptGO.EnterTeleportTo('Orthoma')
+               ElseIF CheckSQL("NextQuest") ="NextGorgoros"
+                    ScriptGO.SetSQL("NextQuest") = "Gorgoros"
+                    IF CheckSQL("NextQuest") = "Gorgoros"
+                         IF CheckSQL("Gorgoros") = True
+                              ConsolePrint("Teleport To Gorgoros")
+                              ScriptGO.EnterTeleportTo("Gorgoros")
+               ElseIF CheckSQL("NextQuest") = "NextDoratia"
+                    ScriptGO.SetSQL("NextQuest") = "Doratia"
+                    IF CheckSQL("NextQuest") = "Doratia"
+                         IF CheckSQL("Doratia") = True
+                              ConsolePrint("Teleport To Doratia")
+                              ScriptGO.EnterTeleportTo("Doratia")
+          ElseIF CheckMapGPSdataUse() C= ("AureaShipToTeleport")
+               IF CheckPosUpdateXYZ(PosX,PosY,PosZ) = "32025,32464,7"
+                    IF CheckMapGPSdataUse() = ("AureaShipToTeleport GPS.txt")
+                         ConsolePrint("Change waypoint to PortToPortal")
+                         ScriptGO.ChangeMapRuteData("PortToPortal GPS.txt")
+               ElseIF CheckPosUpdateXYZ(PosX,PosY,PosZ) = "32676,31745,7"
+                    IF CheckMapGPSdataUse() = ("AureaShipToTeleport GPS.txt")
+                         ConsolePrint("Change Map To Go Npc Kalamon")
+                         ScriptGO.ChangeMapRuteData("PortToKalamon GPS.txt")
+               ElseIF CheckPosUpdateXYZ(PosX,PosY,PosZ) =
+                    IF CheckMapGPSdataUse() = ("AureaShipToTeleport GPS.txt")
+                         ConsolePrint("Change map to go to Buya")
+                         ScriptGO.ChangeMapRuteData()
+     #Talk Quest Orthoma
+     ElseIF CheckMapGPSdataUse() C=("PortToPortal")
+          IF CheckPosUpdateXYZ(PosX,PosY,PosZ) = "32007,32452,7"
+               IF CheckMapGPSdataUse() = ("PortToPortal GPS.txt")
+                    ConsolePrint("Teleport to Orc City")
+                    ScriptGO.EnterTeleportTo('Orc City')
+          ElseIF CheckPosUpdateXYZ(PosX,PosY,PosZ) = "31901,32419,7"
+               ScriptGO.ChangeMapRuteData("PortolToOrzai GPS.txt")
+               ConsolePrint("Go Talk Npc Orzai")
+     ElseIF CheckMapGPSdataUse() C= ("PortolToOrzai")
+          IF CheckPosUpdateXYZ(PosX,PosY,PosZ) = "31899,32413,7"
+               IF CheckMapGPSdataUse() = ("PortolToOrzai GPS.txt")
+                    IF CheckSQL("Orzai") = True
+                         ConsolePrint("Talk Npc Orzai")
+                         ScriptGO.TalkNPCname("Orzai")
+     ElseIF CheckMapGPSdataUse() C= ("OrzaiToSorkha")
+          IF CheckPosUpdateXYZ(PosX,PosY,PosZ) = "31898,32410,7"
+               IF CheckMapGPSdataUse() = ("OrzaiToSorkha GPS.txt")
+                    IF CheckSQL("Sorkha") = True
+                         ConsolePrint("Talk Npc Sorkha")
+                         ScriptGO.TalkNPCname("Sorkha")
+     ElseIF CheckMapGPSdataUse() C= ("SorkhaToKrathara")
+          IF CheckPosUpdateXYZ(PosX,PosY,PosZ) = "31896,32400,7"
+               IF CheckMapGPSdataUse() = ("SorkhaToKrathara GPS.txt")
+                    IF CheckSQL("Krathara") = True
+                         ConsolePrint("Talk Npc Krathara")
+                         ScriptGO.TalkNPCname("Krathara")
+     ElseIF CheckMapGPSdataUse() C= ("KratharaToZurko")
+          IF CheckPosUpdateXYZ(PosX,PosY,PosZ) = "31888,32407,7"
+               IF CheckMapGPSdataUse() = ("KratharaToZurko GPS.txt")
+                    IF CheckSQL("Zurko") = True
+                         ConsolePrint("Talk Npc Zurko")
+                         ScriptGO.TalkNPCname("Zurko")
+     ElseIF CheckMapGPSdataUse() C= ("ZurkoToPortal")
+          ConsolePrint("From Zurko go to portal")
+          IF CheckPosUpdateXYZ(PosX,PosY,PosZ) = "31901,32419,7"
+               ConsolePrint("Check XYZ if = 31901,32419,7 teleport to Harbour ")
+               IF CheckMapGPSdataUse() =("ZurkoToPortal GPS.txt")
+                    ConsolePrint("Teleport to Orthoma Harbour")
+                    ScriptGO.EnterTeleportTo('Orthoma Harbour')
+          ElseIF CheckPosUpdateXYZ(PosX,PosY,PosZ) = "32007,32452,7"
+               ConsolePrint("Portal Go To Orthoma Port")
+               ScriptGO.ChangeMapRuteData("PortalToPort GPS.txt")
+     ElseIF CheckMapGPSdataUse() C= ("PortalToPort GPS")
+          IF CheckPosUpdateXYZ(PosX,PosY,PosZ) = "32024,32459,7"
+               ConsolePrint("check XYZ if = 32024,32459,7")
+               IF CheckMapGPSdataUse() = ("PortalToPort GPS.txt")
+                    ConsolePrint("If map = Portal to port teleport to Aurea Island")
+                    ConsolePrint("Teleport To Aurea")
+                    ScriptGO.EnterTeleportTo('Aurea Southport')
+                    ScriptGO.SetSQL("NextQuest") = "NextGorgoros"
+     #Talk Quest Gorgoros
+     ElseIF CheckMapGPSdataUse() C= ("PortToKalamon")
+          IF CheckPosUpdateXYZ(PosX,PosY,PosZ) = "32703,31757,8"
+               IF CheckMapGPSdataUse("PortToKalamon GPS.txt")
+                    IF CheckSQL("Kalamon") = True
+                         ConsolePrint("Talk Npc Kalamon")
+                         ScriptGO.TalkNPCname("Kalamon")
+                         ConsolePrint("Change map to Elvira")
+                    ElseIF CheckSQL("Kalamon") = False
+                         ConsolePrint("Skip Quest Kalamon")
+                         ConsolePrint("Change map to Elvira")
+                         ScriptGO.ChangeMapGPSdata("KalamonToElvira GPS.txt")
+     ElseIF CheckMapGPSdataUse() C= ("KalamonToElvira")
+          IF CheckPosUpdateXYZ(PosX,PosY,PosZ) =
+               IF CheckMapGPSdataUse() = ("KalamonToElvira GPS.txt")
+                    IF CheckSQL("Elvira") = True
+                         ConsolePrint("Talk Npc Elvira")
+                         ScriptGO.TalkNPCname("Elvira")
+                    ElseIF CheckSQL("Elvira") = False
+                         ConsolePrint("Skip Quest Elvira")
+                         ScriptGO.ChangeMapRuteData("ElviraToPort GPS.txt")
+     ElseIF CheckMapGPSdataUse("ElviraToPort")
+          IF CheckPosUpdateXYZ(PosX,PosY,PosZ) = "32649,31742,8"
+               IF CheckMapGPSdataUse() = ("ElviraToPort GPS.txt")
+                    ConsolePrint("Teleport To Camp Driftwood")
+                    ScriptGO.EnterTeleportTo("Camp Driftwood")
+          ElseIF CheckPosUpdateXYZ(PosX,PosY,PosZ) = ""
+               IF CheckMapGPSdataUse() = ("ElviraToPort GPS.txt")
+                    ConsolePrint("Teleport To Dark Halls")
+                    ScriptGO.EnterTeleportTo("Dark Halls")
+                    ScriptGO.ChangeMapRuteData("PortDarkHallsToCrimson GPS.txt")
+     ElseIF CheckMapGPSdataUse() C= ("PortDarkHallsToCrimson")
+          IF CheckPosUpdateXYZ(PosX,PosY,PosZ) = ""
+               IF CheckMapGPSdataUse() = ("PortDarkHallsToCrimson GPS.txt")
+                    IF CheckSQL("Crimson") = True
+                         ScriptGO.TalkNPCname("")
+                    ElseIF CheckSQL("Crimson") = False
+                         ConsolePrint("Skip Quest Crimson")
+                         ScriptGO.ChangeMapRuteData("CrimsonGoToDarkHallsPort GPS.txt")
+     ElseIF CheckMapGPSdataUse() C=("CrimsonGoToDarkHallsPort")
+          IF CheckPosUpdateXYZ(PosX,PosY,PosZ) =
+               IF CheckMapGPSdataUse() = ("CrimsonGoToDarkHallsPort GPS.txt")
+                    ConsolePrint("Teleport Camp Driftwood")
+                    ScriptGO.EnterTeleportTo("Camp Driftwood")
+     ElseIF CheckMapGPSdataUse() C=("CrimsonGoToDaekHallsPort")
+          IF CheckPosUpdateXYZ(PosX,PosY,PosZ) =
+               IF CheckMapGPSdataUse() = ()
+                    ConsolePrint("Portal camp go to port")
+                    ScriptGO.ChangeMapRuteData()
+          ElseIF CheckPosUpdateXYZ(PosX,PosY,PosZ) =
+               ConsolePrint("Teleport to Aurea")
+               ScriptGO.EnterTeleportTo()
+               ScriptGO.SetSQL("NextQuest") = "NextDoratia"
+     #Talk Quest Doratia
+     ElseIF CheckMapGPSdataUse() C=("")
+          IF CheckPosUpdateXYZ(PosX,PosY,PosZ)
+               IF CheckMapGPSdataUse() = ()
+                    IF CheckSQL("Buya") = True
+                         ConsolePrint("Talk Npc Buya")
+                         ScriptGO.TalkNPCname("Buya")
+                    ElseIF CheckSQL("Buya") = False
+                         ConsolePrint("Skip Quest Buya")
+                         ScriptGO.ChangeMapRuteData()
+     ElseIF CheckMapGPSdataUse() =
+          IF CheckPosUpdateXYZ(PosX,PosY,PosZ)
+
+
